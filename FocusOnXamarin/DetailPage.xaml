@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:custom="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" x:Class="FocusOnXamarin.DetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="product_detail_subheading" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Padding="20,40" ColumnSpacing="32">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="58" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Style="{StaticResource menu_button}"  Text="arrow-left2" />
+
+            <ScrollView Grid.ColumnSpan="2" Grid.Row="1" Padding="0,24" VerticalScrollBarVisibility="Never">
+                <StackLayout>
+
+                    <Image Style="{StaticResource product_detail_image}" Source="{Binding Product.ImageUrl}" />
+
+                    <Label Style="{StaticResource product_detail_name}" Text="{Binding Product.Name}" />
+
+                    <Label Text="{Binding Product.WeightInGrams, StringFormat='{0}g'}" Style="{StaticResource product_card_weight}" />
+
+                    <StackLayout Margin="0,32" Orientation="Horizontal">
+
+                        <Frame Style="{StaticResource quantity_picker_container}" >
+                            <Grid VerticalOptions="Start">
+                                <Button Style="{StaticResource quantity_picker_button}" Grid.Column="0" Text="minus" />
+                                <Label Style="{StaticResource quantity_picker_value}" Grid.Column="1" Text="{Binding Product.Quantity}" />
+                                <Button Style="{StaticResource quantity_picker_button}" Grid.Column="2" Text="plus" />
+                            </Grid>
+                        </Frame>
+
+                        <Label Style="{StaticResource product_detail_price}"  Text="{Binding Product.Price, StringFormat='{0:c}'}" />
+                    </StackLayout>
+
+                    <Label Style="{StaticResource product_detail_subheading}" Text="About the product" />
+                    <Label Text="{Binding Product.Description}" />
+                </StackLayout>
+            </ScrollView>
+
+            <custom:PancakeView x:Name="BottomGradient" Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="48" VerticalOptions="End" InputTransparent="True"
+                    BackgroundGradientStartColor="Transparent"
+                    BackgroundGradientEndColor="{StaticResource color_white}" />
+
+            <Button Style="{StaticResource icon_button}" Grid.Row="2" Grid.Column="0" Text="heart" />
+
+            <Button Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Text="Add to cart" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

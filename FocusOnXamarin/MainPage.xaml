@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+             xmlns:models="clr-namespace:FocusOnXamarin.Models"
+             xmlns:custom="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="FocusOnXamarin.MainPage">
+
+    <Grid BackgroundColor="{StaticResource color_black}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <custom:PancakeView x:Name="GridRow1" CornerRadius="32">
+
+            <Grid Style="{StaticResource page_wrapper}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="MenuBarRow1" Height="54" />
+                    <RowDefinition x:Name="MenuBarRow2" Height="*" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" x:Name="MenuBarTitle" Text="Local Delicacies"
+                       Style="{StaticResource title_label}" VerticalOptions="Center"/>
+                <Button Grid.Row="0" x:Name="MenuBarIcon" Text="equalizer2" Style="{StaticResource menu_button}" HorizontalOptions="End" />
+
+                <Grid Grid.Row="1">
+
+                    <CollectionView x:Name="ProductOverview" ItemsSource="{Binding Products}" VerticalScrollBarVisibility="Never">
+
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="2"
+                                VerticalItemSpacing="20"
+                                HorizontalItemSpacing="20" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.Header>
+                            <BoxView HeightRequest="20" />
+                        </CollectionView.Header>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type models:Product}">
+                                <custom:PancakeView Style="{StaticResource product_card}" >
+                                    <StackLayout>
+                                        <Image Source="{Binding ImageUrl}" HorizontalOptions="Center" />
+                                        <Label Style="{StaticResource product_card_price}" Text="{Binding Price, StringFormat='{0:c}' }" />
+                                        <Label Style="{StaticResource product_card_name}"  Text="{Binding Name}" />
+                                        <Label Style="{StaticResource product_card_weight}" Text="{Binding WeightInGrams, StringFormat='{0}g'}" />
+                                    </StackLayout>
+                                </custom:PancakeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+                    <custom:PancakeView x:Name="TopGradient" HeightRequest="32" VerticalOptions="Start" InputTransparent="True"
+                            BackgroundGradientStartColor="{StaticResource color_crema}"
+                            BackgroundGradientEndColor="Transparent" />
+
+                    <custom:PancakeView x:Name="BottomGradient" HeightRequest="32" VerticalOptions="End" InputTransparent="True"
+                            BackgroundGradientStartColor="Transparent"
+                            BackgroundGradientEndColor="{StaticResource color_crema}" />
+
+                </Grid>
+            </Grid>
+
+        </custom:PancakeView>
+
+        <Grid Grid.Row="1" x:Name="GridRow2" HeightRequest="80" Padding="40,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="74" />
+                <RowDefinition Height="128" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="96" />
+            </Grid.RowDefinitions>
+
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Up" Swiped="SwipeGestureRecognizer_SwipedUp" />
+                <SwipeGestureRecognizer Direction="Down" Swiped="SwipeGestureRecognizer_SwipedDown" />
+            </Grid.GestureRecognizers>
+
+            <StackLayout x:Name="CartSmall" Orientation="Horizontal" Grid.Row="0" Spacing="8" HeightRequest="74">
+                <Label Style="{StaticResource small_cart_header}" Text="Cart" />
+                <StackLayout Orientation="Horizontal" Spacing="8" BindableLayout.ItemsSource="{Binding CartContents}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Style="{StaticResource small_cart_image_container}" >
+                                <Image Style="{StaticResource small_cart_image}" Source="{Binding ImageUrl}" />
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+                <Frame Style="{StaticResource small_cart_quantity_container}" >
+                    <Label Style="{StaticResource small_cart_quantity}" Text="2" />
+                </Frame>
+            </StackLayout>
+
+            <Label x:Name="CartLarge" Style="{StaticResource cart_title}" Grid.Row="1" Text="Cart"  />
+
+            <CollectionView ItemsSource="{Binding CartContents}" Grid.Row="2">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="24" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnSpacing="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Frame Style="{StaticResource small_cart_image_container}" HorizontalOptions="Start">
+                                <Image Style="{StaticResource small_cart_image}" Source="{Binding ImageUrl}" />
+                            </Frame>
+
+                            <Label Style="{StaticResource cart_line}" Grid.Column="1" Margin="16,0,8,0"
+                                   Text="{Binding Quantity, StringFormat='{0}   x'}" />
+
+                            <Label Style="{StaticResource cart_line}" Grid.Column="2"
+                                   Text="{Binding Name}" />
+
+                            <Label Style="{StaticResource cart_line_price}" Grid.Column="3"
+                                   Text="{Binding Price, StringFormat='{0:c}'}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.Footer>
+                    <Grid ColumnSpacing="8" Padding="0,32,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Frame Style="{StaticResource cart_delivery_icon_container}" >
+                            <Label Text="truck" Style="{StaticResource cart_delivery_icon}" />
+                        </Frame>
+
+                        <Label Style="{StaticResource cart_line}" Grid.Column="1" Margin="16,0,8,0" Text="Delivery" />
+                        <Label Style="{StaticResource cart_line_price}" Grid.Column="2" Text="Free" />
+
+                        <Label Style="{StaticResource cart_delivery_description}" Grid.Column="1" Grid.Row="1"
+                               Text="All orders of $40 or more qualify for FREE delivery." />
+
+                        <StackLayout Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="2" Margin="0,32,0,0">
+
+                            <Label Style="{StaticResource cart_total}"  Text="Total:" />
+
+                            <Label Style="{StaticResource cart_total_price}"  Text="{Binding TotalPrice, StringFormat='{0:c}'}" />
+
+                        </StackLayout>
+                    </Grid>
+                </CollectionView.Footer>
+            </CollectionView>
+
+            <Button Grid.Row="3" VerticalOptions="EndAndExpand" Text="Next" Margin="0,0,0,44" />
+        </Grid>
+    </Grid>
+</ContentPage>

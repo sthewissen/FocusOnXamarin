@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:custom="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d" x:Class="FocusOnXamarin.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!--Colors-->
+
+            <Color x:Key="color_crema">#F7F5F0</Color>
+            <Color x:Key="color_yellow">#F4C560</Color>
+            <Color x:Key="color_white">#FFFFFF</Color>
+            <Color x:Key="color_black">#000000</Color>
+            <Color x:Key="color_gray">#BBBBBB</Color>
+            <Color x:Key="color_darkgray">#151716</Color>
+
+            <!--Fonts-->
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="IcoMoonFree">
+                <On Platform="iOS" Value="IcoMoon-Free"/>
+                <On Platform="Android" Value="IcoMoon-Free.ttf#Regular"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="PalanquinLight">
+                <On Platform="iOS" Value="Palanquin-Light"/>
+                <On Platform="Android" Value="Palanquin-Light.ttf#Regular"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="PalanquinRegular">
+                <On Platform="iOS" Value="Palanquin-Regular"/>
+                <On Platform="Android" Value="Palanquin-Regular.ttf#Regular"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="PalanquinBold">
+                <On Platform="iOS" Value="Palanquin-Bold"/>
+                <On Platform="Android" Value="Palanquin-Bold.ttf#Bold"/>
+            </OnPlatform>
+
+            <!--Generic styles-->
+
+            <Style TargetType="Grid">
+                <Setter Property="ColumnSpacing" Value="0" />
+                <Setter Property="RowSpacing" Value="0" />
+            </Style>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="Spacing" Value="0" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinRegular}" />
+                <Setter Property="TextColor" Value="{StaticResource color_black}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="LineHeight" Value=".9" />
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource color_yellow}" />
+                <Setter Property="CornerRadius" Value="26" />
+                <Setter Property="HeightRequest" Value="52" />
+                <Setter Property="Padding" Value="12" />
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}" />
+                <Setter Property="TextColor" Value="{StaticResource color_black}" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <!--Specific styles-->
+
+            <Style x:Key="page_wrapper" TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="{StaticResource color_crema}"/>
+                <Setter Property="Padding">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS">20,40,20,0</On>
+                            <On Platform="Android">20,0,20,0</On>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="product_card" TargetType="custom:PancakeView">
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource color_white}"/>
+            </Style>
+
+            <Style x:Key="product_card_weight" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource color_gray}"/>
+            </Style>
+
+            <Style x:Key="product_card_name" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="LineHeight" Value=".7"/>
+            </Style>
+
+            <Style x:Key="product_card_price" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="Margin" Value="0,8"/>
+            </Style>
+
+            <Style x:Key="title_label" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}" />
+                <Setter Property="TextColor" Value="{StaticResource color_black}" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+
+            <Style x:Key="icon_label" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource IcoMoonFree}" />
+                <Setter Property="TextColor" Value="{StaticResource color_black}" />
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+
+            <Style x:Key="small_cart_image" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFill"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+            </Style>
+
+            <Style x:Key="small_cart_header" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource color_white}"/>
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Margin" Value="0,0,16,0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="small_cart_image_container" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="IsClippedToBounds" Value="True"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+            </Style>
+
+            <Style x:Key="cart_line" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource color_white}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="cart_title" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource color_white}"/>
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="FontSize" Value="32"/>
+                <Setter Property="Margin" Value="0,48,16,48"/>
+            </Style>
+
+            <Style x:Key="small_cart_quantity" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="LineHeight" Value=".8"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+
+            <Style x:Key="small_cart_quantity_container" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="CornerRadius" Value="24"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource color_yellow}"/>
+                <Setter Property="HeightRequest" Value="48"/>
+                <Setter Property="WidthRequest" Value="48"/>
+            </Style>
+
+            <Style x:Key="cart_line_price" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource color_gray}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinRegular}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="cart_delivery_icon" TargetType="Label" BaseResourceKey="icon_label">
+                <Setter Property="TextColor" Value="{StaticResource color_yellow}"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="cart_delivery_icon_container" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="IsClippedToBounds" Value="True"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource color_darkgray}"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+            </Style>
+
+            <Style x:Key="cart_total_price" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource color_white}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="cart_total" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource color_white}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinRegular}"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="cart_delivery_description" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource color_gray}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinRegular}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="16,0,48,0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="icon_button" TargetType="Button">
+                <Setter Property="BorderColor" Value="{StaticResource color_gray}"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontFamily" Value="{StaticResource IcoMoonFree}"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource color_white}"/>
+                <Setter Property="HeightRequest" Value="54"/>
+                <Setter Property="WidthRequest" Value="54"/>
+            </Style>
+
+            <Style x:Key="product_detail_price" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="End"/>
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+            </Style>
+
+            <Style x:Key="product_detail_name" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="FontSize" Value="32"/>
+                <Setter Property="MaxLines" Value="2"/>
+            </Style>
+
+            <Style x:Key="product_detail_image" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFill"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="HeightRequest" Value="300"/>
+                <Setter Property="WidthRequest" Value="300"/>
+            </Style>
+
+            <Style x:Key="menu_button" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource IcoMoonFree}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+            </Style>
+
+            <Style x:Key="quantity_picker_value" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="quantity_picker_button" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource IcoMoonFree}"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource color_white}"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+            </Style>
+
+            <Style x:Key="quantity_picker_container" TargetType="Frame">
+                <Setter Property="HasShadow" Value="false"/>
+                <Setter Property="BorderColor" Value="{StaticResource color_gray}"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
