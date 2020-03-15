@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:custom="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" x:Class="FocusOnXamarin.DetailPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             x:Class="FocusOnXamarin.DetailPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="product_detail_subheading" TargetType="Label">
@@ -20,12 +25,12 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource menu_button}"  Text="arrow-left2" />
+            <Button Style="{StaticResource menu_button}"  Text="arrow-left2" Clicked="BackButton_Clicked" />
 
             <ScrollView Grid.ColumnSpan="2" Grid.Row="1" Padding="0,24" VerticalScrollBarVisibility="Never">
                 <StackLayout>
 
-                    <Image Style="{StaticResource product_detail_image}" Source="{Binding Product.ImageUrl}" />
+                    <Image sharedTransitions:Transition.Name="itemTransition" Style="{StaticResource product_detail_image}" Source="{Binding Product.ImageUrl}" />
 
                     <Label Style="{StaticResource product_detail_name}" Text="{Binding Product.Name}" />
 

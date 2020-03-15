@@ -5,8 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
              xmlns:models="clr-namespace:FocusOnXamarin.Models"
              xmlns:custom="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="FocusOnXamarin.MainPage">
-
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             x:Class="FocusOnXamarin.MainPage"
+             NavigationPage.HasNavigationBar="False">
     <Grid BackgroundColor="{StaticResource color_black}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -28,7 +29,7 @@
 
                 <Grid Grid.Row="1">
 
-                    <CollectionView x:Name="ProductOverview" ItemsSource="{Binding Products}" VerticalScrollBarVisibility="Never">
+                    <CollectionView x:Name="ProductOverview" ItemsSource="{Binding Products}" VerticalScrollBarVisibility="Never" SelectionMode="Single" SelectionChanged="ProductOverview_SelectionChanged">
 
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Vertical" Span="2"
@@ -42,14 +43,16 @@
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="{x:Type models:Product}">
-                                <custom:PancakeView Style="{StaticResource product_card}" >
-                                    <StackLayout>
-                                        <Image Source="{Binding ImageUrl}" HorizontalOptions="Center" />
-                                        <Label Style="{StaticResource product_card_price}" Text="{Binding Price, StringFormat='{0:c}' }" />
-                                        <Label Style="{StaticResource product_card_name}"  Text="{Binding Name}" />
-                                        <Label Style="{StaticResource product_card_weight}" Text="{Binding WeightInGrams, StringFormat='{0}g'}" />
-                                    </StackLayout>
-                                </custom:PancakeView>
+                                <StackLayout>
+                                    <custom:PancakeView Style="{StaticResource product_card}" >
+                                        <StackLayout>
+                                            <Image sharedTransitions:Transition.Name="itemTransition" Source="{Binding ImageUrl}" sharedTransitions:Transition.Group="{Binding Name}" HorizontalOptions="Center" />
+                                            <Label Style="{StaticResource product_card_price}" Text="{Binding Price, StringFormat='{0:c}' }" />
+                                            <Label Style="{StaticResource product_card_name}"  Text="{Binding Name}" />
+                                            <Label Style="{StaticResource product_card_weight}" Text="{Binding WeightInGrams, StringFormat='{0}g'}" />
+                                        </StackLayout>
+                                    </custom:PancakeView>
+                                </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
 

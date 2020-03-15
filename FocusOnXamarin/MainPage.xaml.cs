@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FocusOnXamarin.Models;
 using FocusOnXamarin.ViewModels;
+using Plugin.SharedTransitions;
 using Xamarin.Forms;
 
 namespace FocusOnXamarin
@@ -84,6 +86,20 @@ namespace FocusOnXamarin
                 TopGradient.FadeTo(1, easing: Easing.CubicInOut),
                 CartSmall.FadeTo(1, easing: Easing.CubicInOut)
             );
+        }
+
+        async void ProductOverview_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection.Any())
+            {
+                ProductOverview.SelectedItem = null;
+                var tappedItemData = e.CurrentSelection.FirstOrDefault() as Product;
+
+                //this is required in order to pass the views to animate
+                SharedTransitionNavigationPage.SetTransitionSelectedGroup(this, tappedItemData.Name);
+
+                await Navigation.PushAsync(new DetailPage(tappedItemData));
+            }
         }
     }
 }

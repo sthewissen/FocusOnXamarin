@@ -1,4 +1,5 @@
 ﻿using System;
+using Plugin.SharedTransitions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace FocusOnXamarin
         {
             InitializeComponent();
 
-            MainPage = new DetailPage();
+            MainPage = new SharedTransitionNavigationPage(new MainPage());
         }
 
         protected override void OnStart()
