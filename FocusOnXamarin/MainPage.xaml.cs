@@ -92,10 +92,13 @@ namespace FocusOnXamarin
         {
             if (e.CurrentSelection.Any())
             {
+                // Reset selection
                 ProductOverview.SelectedItem = null;
+
+                // Get the item we're opening.
                 var tappedItemData = e.CurrentSelection.FirstOrDefault() as Product;
 
-                //this is required in order to pass the views to animate
+                // This is required in order to pass the views to animate
                 SharedTransitionNavigationPage.SetTransitionSelectedGroup(this, tappedItemData.Name);
 
                 await Navigation.PushAsync(new DetailPage(tappedItemData));

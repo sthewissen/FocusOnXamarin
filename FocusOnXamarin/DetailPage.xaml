@@ -5,14 +5,6 @@
              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
              x:Class="FocusOnXamarin.DetailPage"
              NavigationPage.HasNavigationBar="False">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="product_detail_subheading" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
-                <Setter Property="FontSize" Value="18"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid Padding="20,40" ColumnSpacing="32">
             <Grid.RowDefinitions>

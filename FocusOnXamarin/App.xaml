@@ -77,6 +77,11 @@
 
             <!--Specific styles-->
 
+            <Style x:Key="product_detail_subheading" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource PalanquinBold}"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+
             <Style x:Key="page_wrapper" TargetType="Grid">
                 <Setter Property="BackgroundColor" Value="{StaticResource color_crema}"/>
                 <Setter Property="Padding">
