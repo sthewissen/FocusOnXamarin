@@ -10,3 +10,5 @@ This is the sample app that I showed at the dotNETConf - Focus on Xamarin event 
 You can re-watch the session itself here:
 
 https://channel9.msdn.com/Events/dotnetConf/Focus-on-Xamarin/Building-Beautiful-Apps-with-XamarinForms
+
+![](https://raw.githubusercontent.com/sthewissen/FocusOnXamarin/master/app.gif)
