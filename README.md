@@ -8,4 +8,5 @@ This is the sample app that I showed at the dotNETConf - Focus on Xamarin event 
 - Use of styles
 
 You can re-watch the session itself here:
+
 https://channel9.msdn.com/Events/dotnetConf/Focus-on-Xamarin/Building-Beautiful-Apps-with-XamarinForms
