@@ -6,12 +6,15 @@
              x:Class="FocusOnXamarin.DetailPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
+
         <Grid Padding="20,40" ColumnSpacing="32">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="80" />
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="58" />
                 <ColumnDefinition Width="*" />
@@ -22,23 +25,31 @@
             <ScrollView Grid.ColumnSpan="2" Grid.Row="1" Padding="0,24" VerticalScrollBarVisibility="Never">
                 <StackLayout>
 
-                    <Image sharedTransitions:Transition.Name="itemTransition" Style="{StaticResource product_detail_image}" Source="{Binding Product.ImageUrl}" />
+                    <Image sharedTransitions:Transition.Name="itemTransition"
+                           Style="{StaticResource product_detail_image}"
+                           Source="{Binding Product.ImageUrl}" />
 
-                    <Label Style="{StaticResource product_detail_name}" Text="{Binding Product.Name}" />
+                    <Label Style="{StaticResource product_detail_name}"
+                           Text="{Binding Product.Name}" />
 
-                    <Label Text="{Binding Product.WeightInGrams, StringFormat='{0}g'}" Style="{StaticResource product_card_weight}" />
+                    <Label Text="{Binding Product.WeightInGrams, StringFormat='{0}g'}"
+                           Style="{StaticResource product_card_weight}" />
 
                     <StackLayout Margin="0,32" Orientation="Horizontal">
 
                         <Frame Style="{StaticResource quantity_picker_container}" >
                             <Grid VerticalOptions="Start">
                                 <Button Style="{StaticResource quantity_picker_button}" Grid.Column="0" Text="minus" />
-                                <Label Style="{StaticResource quantity_picker_value}" Grid.Column="1" Text="{Binding Product.Quantity}" />
+
+                                <Label Style="{StaticResource quantity_picker_value}" Grid.Column="1"
+                                       Text="{Binding Product.Quantity}" />
+
                                 <Button Style="{StaticResource quantity_picker_button}" Grid.Column="2" Text="plus" />
                             </Grid>
                         </Frame>
 
-                        <Label Style="{StaticResource product_detail_price}"  Text="{Binding Product.Price, StringFormat='{0:c}'}" />
+                        <Label Style="{StaticResource product_detail_price}"
+                               Text="{Binding Product.Price, StringFormat='{0:c}'}" />
                     </StackLayout>
 
                     <Label Style="{StaticResource product_detail_subheading}" Text="About the product" />
@@ -46,13 +57,15 @@
                 </StackLayout>
             </ScrollView>
 
-            <custom:PancakeView x:Name="BottomGradient" Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="48" VerticalOptions="End" InputTransparent="True"
-                    BackgroundGradientStartColor="Transparent"
-                    BackgroundGradientEndColor="{StaticResource color_white}" />
+            <custom:PancakeView x:Name="BottomGradient" Grid.Row="1" Grid.ColumnSpan="2"
+                                HeightRequest="48" VerticalOptions="End" InputTransparent="True"
+                                BackgroundGradientStartColor="Transparent"
+                                BackgroundGradientEndColor="{StaticResource color_white}" />
 
             <Button Style="{StaticResource icon_button}" Grid.Row="2" Grid.Column="0" Text="heart" />
 
             <Button Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Text="Add to cart" />
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

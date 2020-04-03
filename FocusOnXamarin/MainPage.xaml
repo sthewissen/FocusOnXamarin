@@ -8,7 +8,9 @@
              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
              x:Class="FocusOnXamarin.MainPage"
              NavigationPage.HasNavigationBar="False">
+
     <Grid BackgroundColor="{StaticResource color_black}">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -46,10 +48,21 @@
                                 <StackLayout>
                                     <custom:PancakeView Style="{StaticResource product_card}" >
                                         <StackLayout>
-                                            <Image sharedTransitions:Transition.Name="itemTransition" Source="{Binding ImageUrl}" sharedTransitions:Transition.Group="{Binding Name}" HorizontalOptions="Center" />
-                                            <Label Style="{StaticResource product_card_price}" Text="{Binding Price, StringFormat='{0:c}' }" />
-                                            <Label Style="{StaticResource product_card_name}"  Text="{Binding Name}" />
-                                            <Label Style="{StaticResource product_card_weight}" Text="{Binding WeightInGrams, StringFormat='{0}g'}" />
+
+                                            <Image sharedTransitions:Transition.Name="itemTransition"
+                                                   sharedTransitions:Transition.Group="{Binding Name}"
+                                                   Source="{Binding ImageUrl}"
+                                                   HorizontalOptions="Center" />
+
+                                            <Label Style="{StaticResource product_card_price}"
+                                                   Text="{Binding Price, StringFormat='{0:c}' }" />
+
+                                            <Label Style="{StaticResource product_card_name}"
+                                                   Text="{Binding Name}" />
+
+                                            <Label Style="{StaticResource product_card_weight}"
+                                                   Text="{Binding WeightInGrams, StringFormat='{0}g'}" />
+
                                         </StackLayout>
                                     </custom:PancakeView>
                                 </StackLayout>
@@ -58,13 +71,13 @@
 
                     </CollectionView>
 
-                    <custom:PancakeView x:Name="TopGradient" HeightRequest="32" VerticalOptions="Start" InputTransparent="True"
-                            BackgroundGradientStartColor="{StaticResource color_crema}"
-                            BackgroundGradientEndColor="Transparent" />
+                    <custom:PancakeView x:Name="TopGradient" HeightRequest="32" VerticalOptions="Start"
+                                        InputTransparent="True" BackgroundGradientStartColor="{StaticResource color_crema}"
+                                        BackgroundGradientEndColor="Transparent" />
 
-                    <custom:PancakeView x:Name="BottomGradient" HeightRequest="32" VerticalOptions="End" InputTransparent="True"
-                            BackgroundGradientStartColor="Transparent"
-                            BackgroundGradientEndColor="{StaticResource color_crema}" />
+                    <custom:PancakeView x:Name="BottomGradient" HeightRequest="32" VerticalOptions="End"
+                                        InputTransparent="True" BackgroundGradientStartColor="Transparent"
+                                        BackgroundGradientEndColor="{StaticResource color_crema}" />
 
                 </Grid>
             </Grid>
@@ -102,7 +115,7 @@
                 </Frame>
             </StackLayout>
 
-            <Label x:Name="CartLarge" Style="{StaticResource cart_title}" Grid.Row="1" Text="Cart"  />
+            <Label x:Name="CartLarge" Style="{StaticResource cart_title}" Grid.Row="1" Text="Cart" />
 
             <CollectionView ItemsSource="{Binding CartContents}" Grid.Row="2">
 
@@ -161,9 +174,10 @@
 
                         <StackLayout Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="2" Margin="0,32,0,0">
 
-                            <Label Style="{StaticResource cart_total}"  Text="Total:" />
+                            <Label Style="{StaticResource cart_total}" Text="Total:" />
 
-                            <Label Style="{StaticResource cart_total_price}"  Text="{Binding TotalPrice, StringFormat='{0:c}'}" />
+                            <Label Style="{StaticResource cart_total_price}"
+                                   Text="{Binding TotalPrice, StringFormat='{0:c}'}" />
 
                         </StackLayout>
                     </Grid>
