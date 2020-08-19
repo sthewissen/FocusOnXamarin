@@ -23,14 +23,17 @@
                 <On Platform="iOS" Value="IcoMoon-Free"/>
                 <On Platform="Android" Value="IcoMoon-Free.ttf#Regular"/>
             </OnPlatform>
+
             <OnPlatform x:TypeArguments="x:String" x:Key="PalanquinLight">
                 <On Platform="iOS" Value="Palanquin-Light"/>
                 <On Platform="Android" Value="Palanquin-Light.ttf#Regular"/>
             </OnPlatform>
+
             <OnPlatform x:TypeArguments="x:String" x:Key="PalanquinRegular">
                 <On Platform="iOS" Value="Palanquin-Regular"/>
                 <On Platform="Android" Value="Palanquin-Regular.ttf#Regular"/>
             </OnPlatform>
+
             <OnPlatform x:TypeArguments="x:String" x:Key="PalanquinBold">
                 <On Platform="iOS" Value="Palanquin-Bold"/>
                 <On Platform="Android" Value="Palanquin-Bold.ttf#Bold"/>

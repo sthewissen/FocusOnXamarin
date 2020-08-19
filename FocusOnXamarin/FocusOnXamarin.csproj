@@ -19,5 +19,39 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Models\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\babyfood.jpeg" />
+    <None Remove="Resources\celery.jpeg" />
+    <None Remove="Resources\bananas.jpeg" />
+    <None Remove="Resources\pepper.jpeg" />
+    <None Remove="Resources\stroopwafel.jpeg" />
+    <None Remove="Resources\speculoos.jpeg" />
+    <None Remove="Resources\juice.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\babyfood.jpeg">
+      <LogicalName>babyfood</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\celery.jpeg">
+      <LogicalName>celery</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\bananas.jpeg">
+      <LogicalName>bananas</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\pepper.jpeg">
+      <LogicalName>pepper</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\stroopwafel.jpeg">
+      <LogicalName>stroopwafel</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\speculoos.jpeg">
+      <LogicalName>speculoos</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\juice.jpeg">
+      <LogicalName>juice</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
